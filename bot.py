@@ -135,16 +135,6 @@ async def reload(ctx, ext:str=None):
 
 @client.command()
 @commands.check(is_owner)
-async def cogs(ctx):
-	if ext == None:
-		for filename in os.listdir('\cogs'):
-			if filename.endswith('.py'):
-				await ctx.send(f'cogs.{filename[:-3]}')
-	else:
-		await ctx.send(f"The extension `{ext}` have been loaded")
-
-@client.command()
-@commands.check(is_owner)
 async def logout(ctx):
 	await ctx.send('```Shutting down...```')
 	print("Shutting down...")
@@ -172,7 +162,7 @@ async def guilds(ctx):
 
 @client.command()
 async def google(ctx, *, arg):
-	api_token = "51592cd692734e86a21b71ba90f3d327"
+	api_token = "API"
 	url = f'http://newsapi.org/v2/everything?q={arg}&apiKey={api_token}'
 
 	response = requests.get(url)
@@ -191,7 +181,7 @@ async def google(ctx, *, arg):
 
 @client.command()
 async def news(ctx):
-	api_token = "51592cd692734e86a21b71ba90f3d327"
+	api_token = "API"
 	url = f'https://newsapi.org/v2/top-headlines?country=gb&category=business&apiKey={api_token}'
 
 	response = requests.get(url)
@@ -217,17 +207,6 @@ async def sms(ctx, user: discord.Member, *, arg):
 
 	await user.send(f"{ctx.author} sent you a SMS saying: {arg}")
 	await ctx.send("Message successfully sent sir!")
-
-@client.command()
-async def time(ctx):
-	now = datetime.datetime.now()
-	cyear = datetime.datetime.now.year
-	cmon = datetime.datetime.now.month
-	cday = datetime.datetime.now.day
-	chou = datetime.datetime.now.hour
-	cmin = datetime.datetime.now.minute
-	csec = datetime.datetime.now.second
-	await ctx.send(f"{chou}:{cmin}:{csec} {cday}:{cmon}:{cyear}")
 
 @client.command()
 async def embed(ctx):
@@ -305,75 +284,10 @@ async def rslowmode(ctx):
 	await ctx.channel.edit(slowmode_delay=0) 
 	await ctx.send(f"⌚ Reset the slowmode delay in this channel!", delete_after=10.5)
 
-
-@client.command()
-async def granny(ctx):
-
-	await ctx.send("https://tenor.com/view/fetch-dog-park-pull-funny-run-gif-16439487")
-
-@client.command()
-async def pedo(ctx):
-
-	jaime = Image.open("jaimeee.png")
-
-	await ctx.send(file = discord.File("jaimeee.png"))
-
-	await ctx.send("Pedo ^^")
-
-@client.command()
-async def poki(ctx):
-
-	jaime = Image.open("takencepoki.png")
-
-	await ctx.send(file = discord.File("takencepoki.png"))
-
-@client.command()
-async def freshcut(ctx):
-
-	jaime = Image.open("IMG_20200903_154838.jpg")
-
-	await ctx.send(file = discord.File("IMG_20200903_154838.jpg"))
-
-	await ctx.send("fresh cut ^^")
-
-@client.command()
-async def cat(ctx):
-
-	req = requests.get("https://api.thecatapi.com/v1/images/search").text
-	data = json.loads(req)
-
-	await ctx.send(data[0]["url"])
-
-@client.command()
-async def dog(ctx):
-
-	req = requests.get("https://dog.ceo/api/breeds/image/random")
-	data = json.loads(req)
-
-	await ctx.send(data["url"])
-
-@client.command()
-async def joke(ctx):
-
-	url = "https://joke3.p.rapidapi.com/v1/joke"
-
-	headers = {
-	'x-rapidapi-host': "joke3.p.rapidapi.com",
-	'x-rapidapi-key': "b0542a3689mshb700e2a48590992p13cdb5jsn36b7c359065d"
-	}
-
-	response = requests.request("GET", url, headers=headers).text
-
-	data = json.loads(response)
-
-	var = data["content"]
-
-	await ctx.send(f"{var}")
-
 @client.command()
 async def weather(ctx, city="London"):
 
-	apikey = "7b4f7fef4054c9cac3d38fd3eb2efd30"
+	apikey = "API"
 
 	response = requests.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={apikey}")
 	responsetext = response.text
@@ -926,16 +840,5 @@ async def fspam(ctx, message):
 for filename in os.listdir('./cogs'):
 	if filename.endswith('.py'):
 		client.load_extension(f'cogs.{filename[:-3]}')
-
-# cd d:/Terrybot
-
-"""Prim+ is a multipurpose bot used for Music, Moderation, Economy and fun. Prim+ has an incredible interface and support team.
-
-Features:
-Moderation Commands
-Music Commands
-Image Commands
-
-I would like to improve my commands and make new ones using the KSoft.Si API."""
 
 client.run(TOKEN)
