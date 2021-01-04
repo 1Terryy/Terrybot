@@ -34,7 +34,7 @@ from PIL.ImageFilter import (
    EMBOSS, FIND_EDGES, SMOOTH, SMOOTH_MORE, SHARPEN
 )
 
-TOKEN = 'NzQxODEyNzY4MzYwODkwNDgx.Xy9A-g.KeTpgl8rpuvPhIi_Xkv7y7ppJhs'
+TOKEN = '${{ secrets.BOT_TOKEN }}'
 
 def get_prefix(client, message):
 
